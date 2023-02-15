@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.*
 
 @Composable
 fun DropDown() {
+    MainContent()
 
 }
 // Creating a composable
@@ -41,8 +42,8 @@ fun DropDown() {
 @Composable
 fun MainContent() {
     Scaffold(
-        topBar = { TopAppBar(title = { Text("GFG | Drop Down Menu", color = Color.White) }, backgroundColor = Color(0xff0f9d58)) },
-        content = { MyContent() }
+        topBar = { TopAppBar(title = { Text("Select Language", color = Color.White) }, backgroundColor = Color(0xff0f9d58)) },
+        content = { MyContent(listOf("C++", "Java", "Python")) }
     )
 }
 
@@ -51,15 +52,17 @@ fun MainContent() {
 // Calling this function as content
 // in the above function
 @Composable
-fun MyContent(){
+fun MyContent(
+    cityList: List<String>
+){
 
     // Declaring a boolean value to store
     // the expanded state of the Text Field
     var mExpanded by remember { mutableStateOf(false) }
 
     // Create a list of cities
-    val mCities = listOf("Delhi", "Mumbai", "Chennai", "Kolkata", "Hyderabad", "Bengaluru", "Pune")
-
+//    val mCities = listOf("C", "C++", "Java", "Kotlin", "Python")
+        val mCities = cityList
     // Create a string value to store the selected city
     var mSelectedText by remember { mutableStateOf("") }
 
