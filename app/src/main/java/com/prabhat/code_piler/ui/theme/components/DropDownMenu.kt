@@ -64,6 +64,7 @@ fun MyContent(){
     var mSelectedText by remember { mutableStateOf("") }
 
 //    var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
+    var mTextFieldSize by remember{ mutableStateOf(androidx.compose.ui.geometry.Size.Zero)}
 
     // Up Icon when expanded and down icon when collapsed
     val icon = if (mExpanded)
