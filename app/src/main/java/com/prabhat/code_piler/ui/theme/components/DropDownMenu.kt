@@ -21,6 +21,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.geometry.CornerRadius.Companion.Zero
 import androidx.compose.ui.geometry.Offset.Companion.Zero
 /*import androidx.compose.ui.Modifier
@@ -36,12 +37,18 @@ import androidx.compose.ui.unit.*
 fun DropDown() {
 
 }
+
 // Creating a composable
 // function to display Top Bar
 @Composable
 fun MainContent() {
     Scaffold(
-        topBar = { TopAppBar(title = { Text("GFG | Drop Down Menu", color = Color.White) }, backgroundColor = Color(0xff0f9d58)) },
+        topBar = {
+            TopAppBar(
+                title = { Text("GFG | Drop Down Menu", color = Color.White) },
+                backgroundColor = Color(0xff0f9d58)
+            )
+        },
         content = { MyContent() }
     )
 }
@@ -51,7 +58,7 @@ fun MainContent() {
 // Calling this function as content
 // in the above function
 @Composable
-fun MyContent(){
+fun MyContent() {
 
     // Declaring a boolean value to store
     // the expanded state of the Text Field
@@ -64,7 +71,7 @@ fun MyContent(){
     var mSelectedText by remember { mutableStateOf("") }
 
 //    var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
-    var mTextFieldSize by remember{ mutableStateOf(androidx.compose.ui.geometry.Size.Zero)}
+    var mTextFieldSize by remember { mutableStateOf(androidx.compose.ui.geometry.Size.Zero) }
 
     // Up Icon when expanded and down icon when collapsed
     val icon = if (mExpanded)
@@ -86,9 +93,9 @@ fun MyContent(){
                     // the DropDown the same width
                     mTextFieldSize = coordinates.size.toSize()
                 },
-            label = {Text("Label")},
+            label = { Text("Label") },
             trailingIcon = {
-                Icon(icon,"contentDescription",
+                Icon(icon, "contentDescription",
                     Modifier.clickable { mExpanded = !mExpanded })
             }
         )
@@ -99,7 +106,7 @@ fun MyContent(){
             expanded = mExpanded,
             onDismissRequest = { mExpanded = false },
             modifier = Modifier
-                .width(with(LocalDensity.current){mTextFieldSize.width.toDp()})
+                .width(with(LocalDensity.current) { mTextFieldSize.width.toDp() })
         ) {
             mCities.forEach { label ->
                 DropdownMenuItem(onClick = {
@@ -118,5 +125,9 @@ fun MyContent(){
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    MainContent()
+    Column {
+        Row{
+
+        }
+    }
 }
