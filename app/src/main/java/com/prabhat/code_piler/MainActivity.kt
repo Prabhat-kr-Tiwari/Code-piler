@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.prabhat.code_piler.ui.theme.CodepilerTheme
+import com.prabhat.code_piler.ui.theme.components.DropdownWithImage
 import com.prabhat.code_piler.ui.theme.components.MainContent
 
 class MainActivity : ComponentActivity() {
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     MainContent()
+                    //DropdownWithImage()
                 }
             }
         }
@@ -35,6 +37,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     CodepilerTheme {
+        DropdownWithImage()
 
     }
 }
