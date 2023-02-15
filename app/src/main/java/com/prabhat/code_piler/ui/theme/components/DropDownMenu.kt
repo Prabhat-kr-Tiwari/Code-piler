@@ -1,49 +1,48 @@
 package com.prabhat.code_piler.ui.theme.components
 
-import android.util.Size
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalDensity
-/*import androidx.compose.ui.tooling.preview.Preview*/
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+
+
+
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-/*import androidx.compose.material.icons.Icons*/
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
-import androidx.compose.ui.geometry.CornerRadius.Companion.Zero
-import androidx.compose.ui.geometry.Offset.Companion.Zero
-/*import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Size*/
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.toSize
+import com.prabhat.code_piler.R
+import com.prabhat.code_piler.ui.theme.Theme
 
-@Composable
-fun DropDown() {
-    MainContent()
 
-}
 // Creating a composable
 // function to display Top Bar
 @Composable
 fun MainContent() {
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Select Language", color = Color.White) }, backgroundColor = Color(0xff0f9d58)) },
-        content = { MyContent(listOf("C++", "Java", "Python")) }
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        "Code-Piler",
+                        color = Color.White
+                    )
+                },
+                backgroundColor = Theme
+            )
+        },
+        content = { MyContent() }
     )
 }
 
@@ -52,22 +51,19 @@ fun MainContent() {
 // Calling this function as content
 // in the above function
 @Composable
-fun MyContent(
-    cityList: List<String>
-){
+fun MyContent() {
 
     // Declaring a boolean value to store
     // the expanded state of the Text Field
     var mExpanded by remember { mutableStateOf(false) }
 
     // Create a list of cities
-//    val mCities = listOf("C", "C++", "Java", "Kotlin", "Python")
-        val mCities = cityList
+    val mCities = listOf("C", "C++", "Java", "Python")
+
     // Create a string value to store the selected city
     var mSelectedText by remember { mutableStateOf("") }
 
-//    var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
-    var mTextFieldSize by remember{ mutableStateOf(androidx.compose.ui.geometry.Size.Zero)}
+    var mTextFieldSize by remember { mutableStateOf(Size.Zero) }
 
     // Up Icon when expanded and down icon when collapsed
     val icon = if (mExpanded)
@@ -75,7 +71,23 @@ fun MyContent(
     else
         Icons.Filled.KeyboardArrowDown
 
-    Column(Modifier.padding(20.dp)) {
+    Row(
+        modifier = Modifier
+            .padding(20.dp)
+
+    ) {
+
+        Image(
+            painter = painterResource(
+                id = R.drawable.java_icn
+            ),
+            contentDescription = "Language Icon",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(70.dp)
+                .padding(5.dp)
+        )
+
 
         // Create an Outlined Text Field
         // with icon and not expanded
@@ -89,9 +101,9 @@ fun MyContent(
                     // the DropDown the same width
                     mTextFieldSize = coordinates.size.toSize()
                 },
-            label = {Text("Label")},
+            label = { Text("Select Language") },
             trailingIcon = {
-                Icon(icon,"contentDescription",
+                Icon(icon, "contentDescription",
                     Modifier.clickable { mExpanded = !mExpanded })
             }
         )
@@ -102,7 +114,7 @@ fun MyContent(
             expanded = mExpanded,
             onDismissRequest = { mExpanded = false },
             modifier = Modifier
-                .width(with(LocalDensity.current){mTextFieldSize.width.toDp()})
+                .width(with(LocalDensity.current) { mTextFieldSize.width.toDp() })
         ) {
             mCities.forEach { label ->
                 DropdownMenuItem(onClick = {
@@ -116,8 +128,7 @@ fun MyContent(
     }
 }
 
-// For displaying preview in
-// the Android Studio IDE emulator
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
