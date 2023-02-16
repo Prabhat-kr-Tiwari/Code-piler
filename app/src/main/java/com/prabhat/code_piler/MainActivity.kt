@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.ui.tooling.preview.Preview
 import com.prabhat.code_piler.ui.theme.CodepilerTheme
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.prabhat.code_piler.ui.theme.White
 import com.prabhat.code_piler.ui.theme.components.Navigation
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = White
                 ) {
+                    MainContent()
+                    //DropdownWithImage()
                     Navigation()
                 }
             }
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     CodepilerTheme {
+        DropdownWithImage()
 
     }
 }
