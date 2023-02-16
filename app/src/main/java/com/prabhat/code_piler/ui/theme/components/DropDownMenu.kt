@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -58,12 +57,30 @@ fun MyContent() {
     var mExpanded by remember { mutableStateOf(false) }
 
     // Create a list of cities
-    val mCities = listOf("C", "C++", "Java", "Python")
+    val mCities = listOf(" ", "C", "C++", "Java", "Python")
 
     // Create a string value to store the selected city
     var mSelectedText by remember { mutableStateOf("") }
 
     var mTextFieldSize by remember { mutableStateOf(Size.Zero) }
+
+    val selectedItem= remember {
+        mutableStateOf(mCities[0])
+
+
+    }
+    // Define a map of images for each item in the dropdown
+    val itemToImageMap = mapOf(
+        " " to R.drawable.default_language,
+        "C" to R.drawable.c_icn,
+        "C++" to R.drawable.cpp_icn,
+        "Java" to R.drawable.java_icn,
+        "Python" to R.drawable.python_icn
+
+    )
+    // Get the current image for the selected item
+    val currentImage = itemToImageMap[selectedItem.value]
+
 
     // Up Icon when expanded and down icon when collapsed
     val icon = if (mExpanded)
@@ -79,7 +96,7 @@ fun MyContent() {
 
         Image(
             painter = painterResource(
-                id = R.drawable.java_icn
+                id = currentImage ?: R.drawable.default_language
             ),
             contentDescription = "Language Icon",
             contentScale = ContentScale.Crop,
@@ -87,6 +104,8 @@ fun MyContent() {
                 .size(70.dp)
                 .padding(5.dp)
         )
+
+
 
 
         // Create an Outlined Text Field
@@ -118,15 +137,57 @@ fun MyContent() {
         ) {
             mCities.forEach { label ->
                 DropdownMenuItem(onClick = {
-                    mSelectedText = label
+                    //mSelectedText = label
+                    selectedItem.value=label
                     mExpanded = false
                 }) {
-                    Text(text = label)
+                    //Text(text = label)
+                    Text(label)
                 }
             }
         }
     }
 }
+@Composable
+fun DropdownWithImage() {
+    // Define a list of items for the dropdown menu
+    val items = listOf("C", "C++", "Java", "Python")
+
+    // Define a mutable state to hold the selected item
+    val selectedItem = remember { mutableStateOf(items[0]) }
+
+    // Define a map of images for each item in the dropdown
+    val itemToImageMap = mapOf(
+        "C" to R.drawable.c_icn,
+        "C++" to R.drawable.cpp_icn,
+        "Java" to R.drawable.java_icn,
+        "Python" to R.drawable.python_icn
+    )
+
+    // Get the current image for the selected item
+    val currentImage = itemToImageMap[selectedItem.value]
+
+    // Create the dropdown menu
+    DropdownMenu(
+        expanded = false,
+        onDismissRequest = { },
+    ) {
+        items.forEach { item ->
+            DropdownMenuItem(onClick = {
+                selectedItem.value = item
+            }) {
+                Text(item)
+            }
+        }
+    }
+
+    // Display the image for the selected item
+    Image(
+        painter = painterResource(id = currentImage ?: R.drawable.default_language),
+        contentDescription = "Image for selected item"
+    )
+}
+
 
 
 @Preview(showBackground = true)

@@ -26,6 +26,10 @@ import com.prabhat.code_piler.R
 import kotlinx.coroutines.delay
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 @Composable
 fun SplashScreen(navController: NavController) {
