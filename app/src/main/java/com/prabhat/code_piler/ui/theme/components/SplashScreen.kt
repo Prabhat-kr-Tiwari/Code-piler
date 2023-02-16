@@ -22,32 +22,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.prabhat.code_piler.R
 import kotlinx.coroutines.delay
 
 
-@Composable
-fun Navigation() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = "splash_screen"
-    ) {
-        composable("splash_screen") {
-//            val systemUiController: SystemUiController = rememberSystemUiController()
-//            systemUiController.isSystemBarsVisible = false
-            SplashScreen(navController = navController)
-        }
-
-        // Main Screen
-        composable("main_screen") {
-            MainContent()
-        }
-    }
-}
 
 @Composable
 fun SplashScreen(navController: NavController) {
