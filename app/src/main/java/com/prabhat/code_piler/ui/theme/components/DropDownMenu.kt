@@ -57,7 +57,7 @@ fun MyContent() {
     var mExpanded by remember { mutableStateOf(false) }
 
     // Create a list of cities
-    val mCities = listOf("C", "C++", "Java", "Python")
+    val mCities = listOf(" ", "C", "C++", "Java", "Python")
 
     // Create a string value to store the selected city
     var mSelectedText by remember { mutableStateOf("") }

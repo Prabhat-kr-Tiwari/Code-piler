@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = White
                 ) {
-                    MainContent()
                     //DropdownWithImage()
                     Navigation()
                 }
@@ -38,7 +37,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     CodepilerTheme {
-        DropdownWithImage()
+//        DropdownWithImage()
 
     }
 }

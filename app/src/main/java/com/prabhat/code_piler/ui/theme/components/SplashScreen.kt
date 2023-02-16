@@ -29,25 +29,7 @@ import com.prabhat.code_piler.R
 import kotlinx.coroutines.delay
 
 
-@Composable
-fun Navigation() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = "splash_screen"
-    ) {
-        composable("splash_screen") {
-//            val systemUiController: SystemUiController = rememberSystemUiController()
-//            systemUiController.isSystemBarsVisible = false
-            SplashScreen(navController = navController)
-        }
 
-        // Main Screen
-        composable("main_screen") {
-            MainContent()
-        }
-    }
-}
 
 @Composable
 fun SplashScreen(navController: NavController) {
